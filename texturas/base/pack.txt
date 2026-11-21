@@ -1,0 +1,5 @@
+name = Wardlight
+author = Pavio Games
+version = 23
+resolution = 16
+license = CC-BY-4.0

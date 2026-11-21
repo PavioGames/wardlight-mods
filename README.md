@@ -7,7 +7,7 @@ outra): os modelos, exemplos, as texturas do jogo como base e um verificador.
 
 | Pasta | O que tem |
 |---|---|
-| `texturas/` | Pacotes de textura. `modelo/` para copiar; `base/` com as texturas do jogo |
+| `texturas/` | Pacotes de textura. `modelo/` para copiar; `base/` com as texturas do jogo, já um pacote |
 | `mods/` | Mods: blocos, itens, receitas, sons e scripts. `modelo/` para copiar; `exemplo/` e `exemplo-wasm/` prontos |
 | `nomes.txt` | Os nomes das texturas que um pacote pode trocar |
 | `tools/check.py` | Confere um pacote ou mod antes de pôr no jogo |
@@ -24,21 +24,28 @@ outra): os modelos, exemplos, as texturas do jogo como base e um verificador.
 
 1. Copie `texturas/modelo/` para `texturas/<nome-do-pacote>/`.
 2. Preencha o `pack.txt`: nome, autor, versão e licença.
-3. Para cada bloco que quer trocar, ponha em `textures/` um **PNG 16×16** com
-   o nome de `nomes.txt` (por exemplo `stone.png`). Um bloco com faces
-   diferentes aceita `<nome>_top.png`, `<nome>_side.png` e
-   `<nome>_bottom.png`. O que não estiver no pacote fica com a textura do
-   jogo. Comece pelas de `texturas/base/`.
-4. Rode `python3 tools/check.py texturas/<nome-do-pacote>`.
-5. No jogo: compacte a pasta em .zip e adicione pelo botão **Texturas** do
+3. Escolha a resolução no `pack.txt`: `resolution = 16`, `32`, `64` ou
+   `128`. Todas as imagens do pacote têm esse tamanho, quadradas.
+4. Para cada desenho que quer trocar, ponha na pasta do pacote um **PNG**
+   com o nome de `nomes.txt` (por exemplo `stone.png`, `grass_top.png`,
+   `kiln_front.png`). O que não estiver no pacote fica com a textura do
+   jogo. Comece pelas de `texturas/base/`. Um bloco de mod usa o nome dele
+   (ou `<nome>_top`, `_side`, `_bottom`).
+5. Rode `python3 tools/check.py texturas/<nome-do-pacote>`.
+6. No jogo: compacte a pasta em .zip e adicione pelo botão **Texturas** do
    mundo (no PC, a pasta vai ao lado do save).
 
-Um pacote tem só `pack.txt` e `textures/` (e, se quiser, `README.md`,
-`LICENSE` e `preview.png`). Nada de scripts ou blocos novos: isso é mod.
+Um pacote tem só o `pack.txt` e os PNGs (e, se quiser, `README.md` e
+`LICENSE`). Nada de scripts ou blocos novos: isso é mod.
+
+**Resolução e celular:** cada aparelho mostra o pacote até onde a qualidade
+gráfica deixa (Leve até 16, Médio até 32, Bonito a resolução do pacote).
+Um pacote de 128 abre num celular simples, só menos nítido.
 
 **Jogando junto:** os pacotes ficam no mundo de quem hospeda. Quem entra vê a
 lista e escolhe um, ou as texturas do jogo; recebe só as imagens daquele
-pacote, como dado, guardadas na memória enquanto joga. O pacote próprio de
+pacote, como dado (já reduzidas à qualidade dele), guardadas na memória
+enquanto joga. O pacote próprio de
 quem entra não vale no jogo de outra pessoa. Quem hospeda pode travar num
 pacote só.
 

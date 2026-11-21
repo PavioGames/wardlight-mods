@@ -8,9 +8,10 @@ before making anything. Answer the person in their own language.
 
 - **Original only.** No names, characters, textures, sounds or levels from
   other games or works, and nothing that imitates their look closely.
-- **A texture pack is pictures only:** `pack.txt` and 16×16 PNGs in
-  `textures/`, named as in `nomes.txt` (plus `_top`, `_side`, `_bottom`).
-  Never put scripts, blocks or other files in one.
+- **A texture pack is pictures only:** `pack.txt` (with `resolution` = 16,
+  32, 64 or 128) and square PNGs of that size beside it, named as in
+  `nomes.txt` (a mod's block by its own name). Never put scripts, blocks or
+  other files in one.
 - **A mod reaches nothing outside the game.** Do not try to read files,
   reach the network or run programs from a script; the game blocks it and
   the mod will not be accepted.
@@ -23,7 +24,7 @@ before making anything. Answer the person in their own language.
 
 ## Making textures
 
-16×16 pixels, opaque unless the block is see-through (glass, leaves,
+The pack's resolution (16 by default; 32, 64 or 128 for more detail), opaque unless the block is see-through (glass, leaves,
 water). Keep the game's look: simple shapes, a few colours, soft noise.
 Start from the matching file in `texturas/base/` when there is one. To make
 the PNG, use any tool you have (for example Python with only the standard
