@@ -11,7 +11,8 @@ import os, struct, sys
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FACES = ("", "_top", "_side", "_bottom")
-PACK_FILES = {"pack.txt", "README.md", "LICENSE", "LICENSE.md", "preview.png"}
+PACK_FILES = {"pack.txt", "README.md", "LICENSE", "LICENSE.md"}
+RESOLUTIONS = ("16", "32", "64", "128")
 
 
 def names():
@@ -43,44 +44,56 @@ def pack_txt(folder, errors):
     return keys
 
 
-def check_textures(folder, known, errors, warnings, base_names=True):
-    tex = os.path.join(folder, "textures")
-    if not os.path.isdir(tex):
-        return
-    for name in sorted(os.listdir(tex)):
-        if name.startswith("."):
-            continue
-        path = os.path.join(tex, name)
-        if not name.endswith(".png"):
-            errors.append(f"textures/{name}: só PNG / PNG only")
-            continue
+def check_pictures(folder, files, size_ok, known, errors, warnings, where=""):
+    for name in files:
+        path = os.path.join(folder, name)
         size = png_size(path)
         if size is None:
-            errors.append(f"textures/{name}: não é um PNG válido / not a valid PNG")
-        elif size != (16, 16):
-            errors.append(f"textures/{name}: {size[0]}x{size[1]}, precisa ser 16x16 / must be 16x16")
+            errors.append(f"{where}{name}: não é um PNG válido / not a valid PNG")
+            continue
+        problem = size_ok(size)
+        if problem:
+            errors.append(f"{where}{name}: {size[0]}x{size[1]}, {problem}")
         stem = name[:-4]
-        if base_names and not any(stem == n + s for n in known for s in FACES):
-            warnings.append(f"textures/{name}: nome fora de nomes.txt (ok se for bloco de mod) / "
+        if known is not None and stem not in known and not any(stem.endswith(f) for f in FACES[1:]):
+            warnings.append(f"{where}{name}: nome fora de nomes.txt (ok se for bloco de mod) / "
                             "not in nomes.txt (fine for a mod's block)")
 
 
 def check_texture_pack(folder):
     errors, warnings = [], []
-    pack_txt(folder, errors)
-    for name in os.listdir(folder):
-        if name.startswith(".") or name == "textures" or name in PACK_FILES:
+    keys = pack_txt(folder, errors)
+    res = keys.get("resolution", "16")
+    if res not in RESOLUTIONS:
+        errors.append(f"pack.txt: resolution = {res}; use 16, 32, 64 ou/or 128")
+        res = "16"
+    side = int(res)
+    pngs = []
+    for name in sorted(os.listdir(folder)):
+        if name.startswith(".") or name in PACK_FILES:
             continue
-        errors.append(f"{name}: um pacote de textura só tem pack.txt e textures/ "
-                      "/ a texture pack holds only pack.txt and textures/")
-    check_textures(folder, names(), errors, warnings)
+        if name.endswith(".png") and os.path.isfile(os.path.join(folder, name)):
+            pngs.append(name)
+        else:
+            errors.append(f"{name}: um pacote de textura só tem pack.txt e PNGs "
+                          "/ a texture pack holds only pack.txt and PNGs")
+    check_pictures(folder, pngs, lambda s: None if s == (side, side) else
+                   f"precisa ser {side}x{side} (resolution) / must be {side}x{side}", names(), errors, warnings)
     return errors, warnings
 
 
 def check_mod(folder):
     errors, warnings = [], []
     pack_txt(folder, errors)
-    check_textures(folder, names(), errors, warnings, base_names=False)
+    tex = os.path.join(folder, "textures")
+    if os.path.isdir(tex):
+        files = sorted(n for n in os.listdir(tex) if not n.startswith("."))
+        for n in files:
+            if not n.endswith(".png"):
+                errors.append(f"textures/{n}: só PNG / PNG only")
+        check_pictures(tex, [n for n in files if n.endswith(".png")],
+                       lambda s: None if s[0] == s[1] and s[0] <= 128 else "precisa ser quadrado, até 128 / must be square, up to 128",
+                       None, errors, warnings, "textures/")
     return errors, warnings
 
 
@@ -101,7 +114,7 @@ def main():
         for kind in ("mods", "texturas"):
             base = os.path.join(HERE, kind)
             folders += [os.path.join(base, d) for d in sorted(os.listdir(base))
-                        if os.path.isdir(os.path.join(base, d)) and d != "base"]
+                        if os.path.isdir(os.path.join(base, d))]
     ok = all([run(f) for f in folders])
     sys.exit(0 if ok else 1)
 

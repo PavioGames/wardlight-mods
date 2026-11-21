@@ -1,29 +1,30 @@
-# Nomes das texturas do jogo que um pacote pode trocar (texturas/<pacote>/textures/<nome>.png).
-# Um bloco com faces diferentes aceita também <nome>_top, <nome>_side e <nome>_bottom.
-# Blocos de mods usam o nome dado no things.txt do mod.
-# Texture names a pack may replace; <name>_top, _side and _bottom for blocks with different faces.
-grass
-dirt
-stone
-sand
-wood
-leaves
-water
-planks
-stone_bricks
-bricks
-glass
-roof
-plaster
-lamp
+# Nomes das texturas do jogo que um pacote pode trocar: <nome>.png, na pasta do pacote.
+# Texture names a pack may replace: <name>.png, in the pack's folder.
+# Um bloco de mod usa o nome dele, ou <nome>_top, _side e _bottom. / A mod's block: its name, or with _top, _side, _bottom.
 beacon_off
 beacon_on
-shade
+bricks
+chest_front
+chest_side
+chest_top
+dirt
+glass
+grass_side
+grass_top
 kiln
-stove
-campfire
-chest
-lab_bench
-lab_bench_on
-workbench
-portal
+kiln_front
+lamp
+leaves
+planks
+plaster
+roof
+sand
+stone
+stone_bricks
+stove_side
+stove_top
+water
+wood_side
+wood_top
+workbench_side
+workbench_top

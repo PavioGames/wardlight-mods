@@ -1,9 +1,9 @@
 # Texturas do jogo / The game's textures
 
-As texturas originais do Wardlight, em PNG 16×16, com os nomes de
-`nomes.txt`. São o ponto de partida de um pacote: copie, edite e salve com o
-mesmo nome. Chegam aqui pela ferramenta de exportar do jogo
-(`game/tools/export_textures.sh`), quando ela existir.
+As texturas originais do Wardlight, já como um pacote (16×16): copie a pasta,
+mude o `pack.txt` e troque as imagens que quiser. Vêm do próprio jogo
+(`export_textures.sh --public`); as que contam a história ficaram de fora.
 
-The original Wardlight textures, as 16×16 PNGs named as in `nomes.txt`: the
-starting point of a pack. They come from the game's export tool once it exists.
+The original Wardlight textures, already a pack (16×16): copy the folder,
+change `pack.txt` and replace the pictures you like. Exported from the game;
+the ones that tell the story are left out.
