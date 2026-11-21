@@ -1,0 +1,7 @@
+name = My textures
+name.pt = Minhas texturas
+version = 1
+author = Seu nome
+license = CC-BY-4.0
+description = What the pack changes.
+description.pt = O que o pacote muda.

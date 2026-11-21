@@ -1,0 +1,2 @@
+# entradas -> saída | ferramenta ou bancada
+# inputs -> output | tool or workstation
