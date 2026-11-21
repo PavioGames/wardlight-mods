@@ -1,0 +1,2 @@
+# Blocos e itens novos. Veja mods/exemplo e o guia (README.md).
+# New blocks and items. See mods/exemplo and the guide (README.en.md).

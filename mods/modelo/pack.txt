@@ -1,0 +1,7 @@
+name = My mod
+name.pt = Meu mod
+version = 1
+author = Seu nome
+license = CC-BY-4.0 (textures, sounds), GPL-3.0 (scripts)
+description = What the mod adds.
+description.pt = O que o mod soma.
