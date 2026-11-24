@@ -1,0 +1,8 @@
+name = Natural terrain
+name.pt = Terreno natural
+version = 1
+author = vanslangebr
+license = CC-BY-4.0
+resolution = 64
+description = More realistic terrain: grass blades and small flowers, dirt with pebbles and roots, cracked stone, rippled sand, water with light ripples, layered leaves, bark and tree rings.
+description.pt = Terreno mais realista: grama com folhas e florzinhas, terra com pedrinhas e raízes, pedra rachada, areia ondulada, água com reflexos, folhagem em camadas, casca e anéis de árvore.
