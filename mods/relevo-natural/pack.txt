@@ -1,0 +1,7 @@
+name = Natural relief
+name.pt = Relevo natural
+version = 1
+author = vanslangebr
+license = GPL-3.0
+description = Reshapes a new world into a coast or an island with mountain ranges, valleys carved by erosion, rivers that run down to the sea and lakes. Only for new worlds.
+description.pt = Remodela um mundo novo num litoral ou numa ilha, com serras, vales cavados pela erosão, rios que descem até o mar e lagos. Só para mundos novos.
